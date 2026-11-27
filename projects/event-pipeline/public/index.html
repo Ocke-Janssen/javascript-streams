@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Event Pipeline</title>
+<style>
+  body { font: 1rem/1.5 system-ui, sans-serif; max-width: 45rem; margin: 2rem auto; padding-inline: 1rem; }
+  label, button { margin-inline-end: .5rem; }
+  dd { margin-inline-start: 0; overflow-wrap: anywhere; }
+  dl { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: .25rem 1rem; }
+</style>
+<main>
+  <h1>Event Pipeline</h1>
+  <form>
+    <label for="scenario">Scenario</label>
+    <select id="scenario">
+      <option value="slow">Slow sink</option>
+      <option value="ok">Demo file</option>
+      <option value="bad">Malformed record</option>
+      <option value="large">Generated file</option>
+    </select>
+    <button id="start">Start</button>
+    <button id="stop" type="button" disabled>Abort</button>
+  </form>
+  <p id="status" role="status">Ready</p>
+  <dl>
+    <dt>Run ID</dt><dd id="run-id">—</dd>
+    <dt>Records read</dt><dd id="read">0</dd>
+    <dt>Kept</dt><dd id="kept">0</dd>
+    <dt>Dropped</dt><dd id="dropped">0</dd>
+    <dt>SHA-256 (NDJSON)</dt><dd id="digest">—</dd>
+  </dl>
+  <a id="download" hidden download>Download Gzip</a>
+</main>
+<script type="module" src="/app.mjs"></script>
+</html>

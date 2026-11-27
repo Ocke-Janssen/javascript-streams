@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>SSE reconnect demo</title>
+<h1>SSE reconnect demo</h1>
+<p>The first response ends after event 2. EventSource reconnects automatically.</p>
+<button id="start">Start demo</button>
+<button id="stop" disabled>Stop</button>
+<p id="status" role="status">Ready</p>
+<ol id="events"></ol>
+<script type="module">
+  const start = document.querySelector('#start');
+  const stop = document.querySelector('#stop');
+  const status = document.querySelector('#status');
+  const list = document.querySelector('#events');
+  let source;
+
+  function close(message) {
+    source?.close();
+    source = undefined;
+    status.textContent = message;
+    start.disabled = false;
+    stop.disabled = true;
+  }
+
+  start.addEventListener('click', () => {
+    const seen = new Map();
+    let reconnects = 0;
+    list.replaceChildren();
+    start.disabled = true;
+    stop.disabled = false;
+    status.textContent = 'Connecting';
+    const options = new URLSearchParams(location.search);
+    const query = options.has('without-end') ? '/sse?without-end=1' : '/sse?interrupt=1';
+    const current = new EventSource(query + (options.has('replay-conflict') ? '&replay-conflict=1' : ''));
+    source = current;
+
+    current.addEventListener('open', () => {
+      if (source === current) status.textContent = 'Connected';
+    });
+    current.addEventListener('progress', (event) => {
+      if (source !== current) return;
+      let progress;
+      try {
+        progress = JSON.parse(event.data);
+      } catch {
+        close('Invalid progress event');
+        return;
+      }
+      if (!Number.isInteger(progress?.id) || progress.id < 1 || progress.id > 4 ||
+          event.lastEventId !== String(progress.id)) {
+        close('Invalid progress event');
+        return;
+      }
+      if (seen.has(progress.id)) {
+        if (seen.get(progress.id) !== progress.percent) close('Conflicting replay');
+        return;
+      }
+      if (progress.id !== seen.size + 1 || progress.percent !== progress.id * 25) {
+        close('Invalid progress event');
+        return;
+      }
+      seen.set(progress.id, progress.percent);
+      const item = document.createElement('li');
+      item.textContent = event.lastEventId + ': ' + progress.percent + '%';
+      list.append(item);
+    });
+    current.addEventListener('error', () => {
+      if (source !== current) return;
+      if (current.readyState === EventSource.CONNECTING && reconnects === 0) {
+        reconnects += 1;
+        status.textContent = 'Reconnecting (unconfirmed)';
+      } else {
+        close('Incomplete stream');
+      }
+    });
+    current.addEventListener('end', (event) => {
+      if (source !== current) return;
+      const complete = event.lastEventId === '5' && event.data === '{}' && seen.size === 4;
+      close(complete ? 'Complete' : 'Incomplete stream');
+    });
+  });
+  stop.addEventListener('click', () => { close('Stopped'); });
+  window.addEventListener('pagehide', () => source?.close());
+</script>
+</html>

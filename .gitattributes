@@ -1,0 +1,6 @@
+# Keep the byte counts used in chapters 01–03 and 16 stable across checkouts.
+fixtures/events.ndjson text eol=lf
+projects/event-pipeline/fixtures/*.ndjson text eol=lf
+
+# Keep the intentional CRLFs and the missing final LF in this fixture.
+fixtures/07-events.ndjson -text

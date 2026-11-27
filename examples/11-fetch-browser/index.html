@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Fetch streaming demo</title>
+<h1>Fetch streaming demo</h1>
+<label for="scenario">Response scenario</label>
+<select id="scenario">
+  <option value="ok">Complete feed</option>
+  <option value="fast">Fast feed (24 records)</option>
+  <option value="http-error">HTTP 503</option>
+  <option value="no-body">No response body</option>
+  <option value="truncated">Incomplete record</option>
+  <option value="short">Short feed (clean EOF)</option>
+  <option value="gap">Missing record ID</option>
+</select>
+<button id="start" aria-controls="status">Start or restart</button>
+<button id="abort" aria-controls="status" disabled>Abort</button>
+<p id="status" role="status">Ready</p>
+<ol id="records" aria-label="Received records"></ol>
+<script type="module" src="/app.mjs"></script>
+</html>

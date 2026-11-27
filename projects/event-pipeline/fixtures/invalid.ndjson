@@ -1,0 +1,12 @@
+{"id":1,"level":"info","event":"Grüße 1"}
+{"id":2,"level":"debug","event":"Grüße 2"}
+{"id":3,"level":"warn","event":"Grüße 3"}
+{"id":4,
+{"id":5,"level":"debug","event":"Grüße 5"}
+{"id":6,"level":"warn","event":"Grüße 6"}
+{"id":7,"level":"info","event":"Grüße 7"}
+{"id":8,"level":"debug","event":"Grüße 8"}
+{"id":9,"level":"warn","event":"Grüße 9"}
+{"id":10,"level":"info","event":"Grüße 10"}
+{"id":11,"level":"debug","event":"Grüße 11"}
+{"id":12,"level":"warn","event":"Grüße 12"}

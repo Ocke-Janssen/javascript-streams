@@ -1,0 +1,16 @@
+{
+  "name": "streams-http-postgres-export",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "probe": "node probe.mjs"
+  },
+  "dependencies": {
+    "csv-stringify": "6.9.0",
+    "pg": "8.23.1",
+    "pg-query-stream": "4.17.1"
+  }
+}

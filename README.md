@@ -1,14 +1,34 @@
 # JavaScript Streams examples
 
-Small examples of Node.js streams and Web Streams. Run the commands from this
-directory with Node.js 24. The examples use synthetic data and built-in APIs.
-The optional framework comparison and PostgreSQL export have separate npm
-dependencies.
+Companion code for the German and English editions of *JavaScript Streams*.
+The examples use Node.js streams and Web Streams with synthetic data.
 
-Kleine Beispiele zu Node.js-Streams und Web Streams. Führe die Befehle aus
-diesem Verzeichnis mit Node.js 24 aus. Die Beispiele nutzen synthetische Daten
-und eingebaute APIs. Der optionale Framework-Vergleich und der PostgreSQL-Export
-haben eigene npm-Abhängigkeiten.
+Begleitcode zur deutschen und englischen Ausgabe von *JavaScript Streams*.
+Die Beispiele zeigen Node.js-Streams und Web Streams mit synthetischen Daten.
+
+## Getting started / Einstieg
+
+Clone the repository or use **Code → Download ZIP** on GitHub and extract
+the archive. Run the examples with Node.js 24 from the folder containing
+this README and the `examples/` directory.
+
+Klone das Repository oder lade es auf GitHub über **Code → Download ZIP**
+herunter und entpacke das Archiv. Starte die Beispiele mit Node.js 24 aus
+dem Ordner mit dieser README und dem Verzeichnis `examples/`.
+
+~~~sh
+git clone https://github.com/Ocke-Janssen/javascript-streams.git
+cd javascript-streams
+node --version
+~~~
+
+The commands in the first table need no npm packages. The parser listings,
+framework comparison, and PostgreSQL export have their own npm installation
+steps.
+
+Die Befehle in der ersten Tabelle kommen ohne npm-Pakete aus. Die
+Parser-Listings, der Framework-Vergleich und der PostgreSQL-Export haben
+jeweils einen eigenen Installationsschritt für ihre npm-Pakete.
 
 | Example / Beispiel | Run / Aufruf | Expected result / Erwartetes Ergebnis |
 | --- | --- | --- |
@@ -19,12 +39,13 @@ haben eigene npm-Abhängigkeiten.
 
 ## Book listings / Buchlistings
 
-The following files reproduce the printed listings, including examples that
-span several code blocks. Run the commands from the repository root.
+The ten files in `examples/book-listings/` reproduce the printed listings,
+including examples that span several code blocks.
+[Browse the files](examples/book-listings/)
 
-Die folgenden Dateien enthalten den Code aus den gedruckten Listings, auch
-wenn er dort auf mehrere Blöcke verteilt ist. Führe die Befehle aus dem
-Hauptordner des Repositorys aus.
+Die zehn Dateien in `examples/book-listings/` enthalten die gedruckten
+Listings, auch wenn der Code im Buch auf mehrere Blöcke verteilt ist.
+[Dateien anzeigen](examples/book-listings/)
 
 | Section / Abschnitt | Run / Aufruf |
 | --- | --- |
@@ -597,3 +618,8 @@ await import('/examples/10-web-decode.mjs');
 
 Reload the page to run the same module again. / Lade die Seite neu, um
 dasselbe Modul erneut auszuführen.
+
+## License / Lizenz
+
+The companion code is available under the MIT License. Der Begleitcode
+steht unter der MIT-Lizenz. [License text / Lizenztext](LICENSE)

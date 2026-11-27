@@ -1,7 +1,5 @@
 # JavaScript Streams examples
 
-Working revision / Arbeitsstand: `2026-11-26.4`.
-
 Small examples of Node.js streams and Web Streams. Run the commands from this
 directory with Node.js 24. The examples use synthetic data and built-in APIs.
 The optional framework comparison and PostgreSQL export have separate npm
@@ -18,6 +16,45 @@ haben eigene npm-Abhängigkeiten.
 | Backpressure | `node examples/04-backpressure.mjs` | `write bb false`, then / danach `drain` |
 | HTTP echo / HTTP-Echo | `node examples/08-http-echo.mjs` | Local server listens on / lokaler Server lauscht auf `127.0.0.1:3000` |
 | UTF-8 decoding / UTF-8-Dekodierung | `node examples/10-web-decode.mjs` | Two decoded chunks / zwei dekodierte Chunks: `"Gr"` and / und `"üße\n"` |
+
+## Book listings / Buchlistings
+
+The following files reproduce the printed listings, including examples that
+span several code blocks. Run the commands from the repository root.
+
+Die folgenden Dateien enthalten den Code aus den gedruckten Listings, auch
+wenn er dort auf mehrere Blöcke verteilt ist. Führe die Befehle aus dem
+Hauptordner des Repositorys aus.
+
+| Section / Abschnitt | Run / Aufruf |
+| --- | --- |
+| 5.2 · NDJSON filter / NDJSON-Filter | `node examples/book-listings/filter.mjs` |
+| 6.3 · Cancel a pipeline / Pipeline abbrechen | `node examples/book-listings/abort.mjs` |
+| 7.3 · UTF-8 and line boundaries / UTF-8 und Zeilengrenzen | `node examples/book-listings/events.mjs` |
+| 7.4 · CSV with a multiline field / CSV mit mehrzeiligem Feld | `node examples/book-listings/csv.mjs` |
+| 7.4 · Stream a JSON array / JSON-Array schrittweise lesen | `node examples/book-listings/json-array.mjs` |
+| 8.3 · CSV download and disconnect / CSV-Download und Abbruch | `node examples/book-listings/report.mjs` |
+| 13.2 · Time the first write and completion / Ersten Write und Abschluss messen | `node examples/book-listings/measure-writes.mjs` |
+| 14.1 · Log events in one run / Ereignisse eines Laufs protokollieren | `node examples/book-listings/observe-first-write.mjs` |
+| 15.2 · Test the byte limit in `limit-copy.mjs` / Bytegrenze in `limit-copy.mjs` prüfen | `node --test examples/book-listings/limit-copy.test.mjs` |
+
+For `csv.mjs` and `json-array.mjs`, install the versions recorded in the
+lockfile first. Installiere für diese beiden Dateien zuerst die in der
+Lockdatei festgelegten Paketversionen.
+
+~~~sh
+npm ci --prefix examples/book-listings
+~~~
+
+While `report.mjs` is running on port 3001, use a second terminal for the
+complete download or the disconnect probe. Starte den vollständigen Download
+oder die Abbruchprobe in einem zweiten Terminal, während `report.mjs` auf
+Port 3001 läuft.
+
+~~~sh
+curl --no-buffer http://127.0.0.1:3001/download-slow
+node examples/08-http-disconnect.mjs
+~~~
 
 ## Core tests / Kern-Tests
 

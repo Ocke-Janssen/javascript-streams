@@ -1,0 +1,13 @@
+{
+  "name": "streams-book-listings",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "csv-parse": "7.0.3",
+    "csv-stringify": "6.9.0",
+    "stream-json": "3.9.0"
+  }
+}
